@@ -3,6 +3,7 @@ package com.example.app_arthur;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,8 +12,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
-    int contador =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +26,16 @@ public class MainActivity extends AppCompatActivity {
         Button bb =findViewById(R.id.button2);
         TextView tv = findViewById(R.id.textView);
 
-        b.setOnClickListener(v -> {
-            contador++;
-            tv.setText(String.valueOf(contador));
-        });
 
         bb.setOnClickListener(v -> {
-            contador=0;
-            tv.setText(String.valueOf(contador));
+            tv.setText(String.valueOf("0"));
+        });
+        EditText edmin=findViewById(R.id.edmin);
+        EditText edmax=findViewById(R.id.edmax);
+
+        b.setOnClickListener(v -> {
+          int min =Integer.parseInt(edmin.getText().toString());
+          int max = Integer.parseInt(edmax.getText().toString());
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
