@@ -2,6 +2,8 @@ package com.example.app_arthur;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,25 +12,40 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
+    int contador =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        Button b=fundViewById(R.id.Button);
-        Textview tv = findViewbyId(R.id.textView);
-        b.setOnClickListener(View ->) {
-            tv.setText("0");
 
-        }
-        }
+        Button b = findViewById(R.id.Button);
+        Button bb =findViewById(R.id.button2);
+        TextView tv = findViewById(R.id.textView);
 
+        b.setOnClickListener(v -> {
+            contador++;
+            tv.setText(String.valueOf(contador));
+        });
+
+        bb.setOnClickListener(v -> {
+            contador=0;
+            tv.setText(String.valueOf(contador));
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
+            v.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom
+            );
+
             return insets;
         });
+
     }
 }
