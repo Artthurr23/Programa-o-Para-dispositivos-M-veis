@@ -1,5 +1,6 @@
 package com.example.app_arthur;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,53 +35,43 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(v -> {
 
             Random random = new Random();
-String smin =edmin.getText().toString();
-            String smax =edmin.getText().toString();
-            if (smin.trim().equals(" "){
-                edmin.setError("informe um valor");
+
+            String smin = edmin.getText().toString();
+            String smax = edmax.getText().toString();
+
+            if (smin.trim().isEmpty()) {
+                edmin.setError("Informe um valor");
                 edmin.requestFocus();
                 return;
             }
-            if (smax.trim().equals(" "){
-                edmax.setError("informe um valor");
+
+            if (smax.trim().isEmpty()) {
+                edmax.setError("Informe um valor");
                 edmax.requestFocus();
                 return;
             }
 
+            int min = Integer.parseInt(smin);
+            int max = Integer.parseInt(smax);
 
+            if (min >= max) {
+                edmax.setError("O valor máximo deve ser maior que o mínimo");
+                edmax.requestFocus();
+                return;
+            }
 
-            int min = Integer.parseInt(edmin.getText().toString());
-            int max = Integer.parseInt(edmax.getText().toString());
-if(min>=max){
-    edmax.setError("O valor maximo deve ser maior que o minimo");
-    return;;
-}
             int r = random.nextInt(max - min + 1) + min;
 
             tv.setText(String.valueOf(r));
         });
 
+
         bb.setOnClickListener(v -> {
-            tv.setText("0");
+            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+            startActivity(intent);
+
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(
-                findViewById(R.id.main),
-                (v, insets) -> {
 
-                    Insets systemBars = insets.getInsets(
-                            WindowInsetsCompat.Type.systemBars()
-                    );
-
-                    v.setPadding(
-                            systemBars.left,
-                            systemBars.top,
-                            systemBars.right,
-                            systemBars.bottom
-                    );
-
-                    return insets;
-                }
-        );
     }
 }
