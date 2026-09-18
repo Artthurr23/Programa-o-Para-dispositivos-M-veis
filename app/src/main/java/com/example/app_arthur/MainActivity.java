@@ -1,6 +1,8 @@
 package com.example.app_arthur;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Integer[]imagens= new integer[]{
+                R.drawable.cachorro,
+                R.drawable.gardem,
+                R.drawable.happy,
+                R.drawable.patinho,
+                R.drawable.porquinho
+        }
     }
+        Button BtnAnterior,BtnProximo;
+        BtnAnterior=findViewById(R.id.BtnAnterior);
+        BtnProximo=findViewById(R.id.BtnProximo);
+        ImageView imageView = findViewById(R.id.imageView);
+
+        BtnProximo.setOnClickListener();
 }
